@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/backend_utvikling_skole/backend_utvikling/pom.xml" />
         <option value="$PROJECT_DIR$/backend_utvikling_skole/time_4/pom.xml" />
+        <option value="$PROJECT_DIR$/catserver/pom.xml" />
       </list>
     </option>
   </component>

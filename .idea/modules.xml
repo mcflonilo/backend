@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/catserver/catserver.iml" filepath="$PROJECT_DIR$/catserver/catserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/backend_utvikling_skole/backend_utvikling/time.iml" filepath="$PROJECT_DIR$/backend_utvikling_skole/backend_utvikling/time.iml" />
     </modules>
   </component>
