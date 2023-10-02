@@ -1,21 +1,27 @@
 package com.example;
 
-import jakarta.servlet.ServletException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ApiServlet extends HttpServlet {
+    String img = "Cat_August_2010-4.jpg";
 
+    private static final Logger logger = LoggerFactory.getLogger(ApiServlet.class);
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        logger.info("request got!");
+
         CatRepository.getCats().forEach(cat -> {
             try {
-                resp.getWriter().write("<HTML><H2>"+cat+"</H2></HTML>");
+                resp.getWriter().write("<html><body><H2>"+cat.name+ " the "+ cat.breed + " cat </H2>" +
+                        "<img src="+img+">" +
+                        "</body></html>");
 
                 System.out.println(cat);
             } catch (IOException e) {
@@ -27,20 +33,15 @@ public class ApiServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Map<String, String[]> params = req.getParameterMap();
-        String resultSet =
-                params.entrySet()
-                        .stream()
-                        .map(e -> e.getKey() + "=" + String.join(", ", e.getValue()))
-                        .collect(Collectors.joining(" "));
-
-
-        System.out.println("params  "+params.get("catname")[0]);
-        CatRepository.addCat(resultSet);
+        var payload = req.getReader().lines().collect(Collectors.joining());
+        var cat = new ObjectMapper().readValue(payload, Cat.class);
+        CatRepository.addCat(cat);
     }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+    record Cat(
+            String name,
+            String breed
+    ){
+
     }
 }
