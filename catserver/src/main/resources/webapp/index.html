@@ -1,3 +1,47 @@
-<html><body><H2>"+cat.name+ " the "+ cat.breed + " cat </H2>" +
-"<img src="Cat_August_2010-4.jpg">" +
-"</body></html>"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>catserver login</title>
+
+    <script>
+        function submitForm() {
+            console.log("submitting form");
+            const catName = document.getElementById("catName").value;
+            const catBreed = document.getElementById("catBreed").value;
+            var data = {"name": catName, "breed": catBreed};
+            const formData = JSON.stringify(data);
+            console.log(formData);
+
+            fetch("http://localhost:8181/api", {
+                contentType: "application/json",
+                method: "POST",
+                body: formData
+
+            }).then(response => {
+                console.log(response);
+                location.reload();
+            }).catch(error => {
+                console.log(error);
+            })
+
+            console.log(data);
+
+        }
+        function redirectToApi() {
+            console.log("redirecting to api");
+            window.location.href = "http://localhost:8181/api";
+        }
+    </script>
+</head>
+<body>
+<label for=catName>name of cat:</label><br>
+<input type=text id=catName name=catName><br>
+<label for=catBreed>Breed:</label><br>
+<input type=text id=catBreed name=catBreed><br><br>
+<input type=submit value="Submit" onclick="submitForm()">
+
+
+<h1>List of cats in repository</h1>
+</body>
+</html>

@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>catserver login</title>
+
+<script>
+    function submitForm() {
+        console.log("submitting form");
+        const name = document.getElementById("userName").value;
+        const pass = document.getElementById("userPassword").value;
+        var data = {"userName": name, "userPassword": pass};
+        const formData = JSON.stringify(data);
+        console.log(formData);
+
+
+        fetch("http://localhost:8181/login", {
+            contentType: "application/json",
+            method: "POST",
+            body: formData
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        })
+        console.log(data);
+
+        redirectToApi();
+    }
+    function redirectToApi() {
+        console.log("redirecting to api");
+
+        window.location.href = "http://localhost:8181/api";
+    }
+</script>
 </head>
 <body>
-<input>input her sånn</input>
-<a href="http://localhost:8181/api"></a>
+    <label for=userName>Username:</label><br>
+    <input type=text id=userName name=userName><br>
+    <label for=userPassword>Password:</label><br>
+    <input type=text id=userPassword name=userPassword><br><br>
+    <input type=submit value="Submit" onclick="submitForm()">
 </body>
 </html>

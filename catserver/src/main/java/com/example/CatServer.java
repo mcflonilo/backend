@@ -19,7 +19,8 @@ public class CatServer {
         var handler = new WebAppContext(resource, "/");
         handler.addServlet(new ServletHolder(new ApiServlet()),"/api");
         handler.addServlet(new ServletHolder(new LoginServlet()),"/login");
-        handler.addFilter(new FilterHolder(new CatFilter()),"/login", EnumSet.of(REQUEST));
+        handler.addServlet(new ServletHolder(new ImageServlet()),"/images/*");
+        handler.addFilter(new FilterHolder(new CatFilter()),"/api", EnumSet.of(REQUEST));
         server.setHandler(handler);
 
         server.start();
