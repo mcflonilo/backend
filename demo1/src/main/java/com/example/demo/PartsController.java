@@ -16,7 +16,6 @@ public class PartsController {
 
     @GetMapping()
     public ResponseEntity<List<Part>> getParts() {
-        
         return ResponseEntity.ok(partsService.getParts());
     }
     @PostMapping()
