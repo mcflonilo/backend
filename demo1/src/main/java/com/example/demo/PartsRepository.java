@@ -25,4 +25,8 @@ public class PartsRepository {
     public void addPart(Part part) {
         this.parts.add(part);
     }
+    public void removePart(Part part) {
+        this.parts.indexOf(part);
+        this.parts.remove(this.parts.indexOf(part));
+    }
 }

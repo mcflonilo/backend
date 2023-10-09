@@ -2,10 +2,8 @@ package com.example.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,13 +15,16 @@ public class PartsController {
     private PartsService partsService;
 
     @GetMapping()
-    public List<Part> getParts() {
-
-        return partsService.getParts();
+    public ResponseEntity<List<Part>> getParts() {
+        
+        return ResponseEntity.ok(partsService.getParts());
     }
     @PostMapping()
-    public void addPart(Part part) {
-        log.info("Part: " + part);
+    public void addPart(@RequestBody Part part) {
         partsService.addPart(part);
+    }
+    @DeleteMapping()
+    public void deletePart(@PathVariable String name) {
+
     }
 }
