@@ -1,6 +1,6 @@
 package com.example.eksamenprep.Repo;
 
-import com.example.eksamenprep.Room;
+import com.example.eksamenprep.Model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

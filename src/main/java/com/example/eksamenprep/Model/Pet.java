@@ -1,6 +1,5 @@
-package com.example.eksamenprep;
+package com.example.eksamenprep.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

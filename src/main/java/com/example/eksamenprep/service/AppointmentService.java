@@ -1,6 +1,6 @@
 package com.example.eksamenprep.service;
 
-import com.example.eksamenprep.Appointment;
+import com.example.eksamenprep.Model.Appointment;
 import com.example.eksamenprep.Repo.AppointmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +25,9 @@ public class AppointmentService {
 
     public Appointment createAppointment(Appointment appointment){
         return appointmentRepo.save(appointment);
+    }
+
+    public void deleteAppointment(Long id){
+        appointmentRepo.deleteById(id);
     }
 }

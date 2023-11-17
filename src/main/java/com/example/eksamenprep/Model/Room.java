@@ -1,4 +1,4 @@
-package com.example.eksamenprep;
+package com.example.eksamenprep.Model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
